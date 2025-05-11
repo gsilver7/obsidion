@@ -1,0 +1,60 @@
+.total{
+    margin: 0;
+  padding: 0;
+  z-index: 0;
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  background-color: #363636; /* 배경 색상 (예시) */
+}
+
+.left {
+    margin: 0;
+  padding: 0;
+  
+  width: 4vw; /* 화면의 1/3을 차지 */
+  height: 100vh;
+  background-color:#363636; /* 배경 색상 (예시) */
+  position: fixed;
+  border-width: 0.5px;
+  border-right: solid;
+  border-color: rgba(255, 255, 255, 0.19);
+  float: left;
+  z-index: 1;
+}
+
+
+
+.buttens{
+  width: 4vw;
+}
+
+button{
+  height : 4vw;
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #040404;
+  color: rgb(224, 225, 226);
+cursor: pointer;
+  border: 1px solid transparent;
+ width: 100%;  /* 자식 요소가 부모 너비에 맞춰서 확장 */
+margin-bottom: 3px;
+border-radius: 5px;
+
+}
+
+button:hover{
+  border-color: transparent;  /* 테두리 색상 변경되지 않도록 설정 */
+  background-color: #525252; 
+  color: #fbf9f9;
+}
+
+button:focus {
+  outline: none;  /* 포커스 상태에서의 outline 제거 */
+  
+}
+
+button:active {
+  background-color: #333; /* 클릭 시 배경색 변경 */
+
+}
