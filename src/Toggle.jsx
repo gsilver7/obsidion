@@ -3,6 +3,15 @@ import React, { useState,useEffect } from 'react';
 
 function Toggle({isActive,data,sendtoggle, fintoggle, onItemClick,finaldata}) {
   const [items, setItems] = useState([]);
+  
+  const today = new Date()
+  const month = today.getMonth() + 1
+  const day = today.getDate()
+  const dateData = today.getFullYear()+"-"+(month < 10 ? '0' + month : month) + '-' + (day < 10 ? '0' + day : day)
+  useEffect(() => {
+  console.log("처음 렌더링 시 한 번 실행됨");
+  setItems; // 이 함수가 한 번만 실행됨
+}, []);
   useEffect(() => {
     if (sendtoggle) {
       addItems();
@@ -33,7 +42,7 @@ if (finaldata) {
   const addItems = () => {
     const newItem = {
       id: `${items.length+1}`,
-      title: `Item ${items.length + 1}`,
+      title: `${dateData} (${items.length + 1})`,
       description: `This is the description of item ${items.length + 1}`,  // 설명 추가
     };
     setItems([...items, newItem]);

@@ -2,12 +2,9 @@ import './Right.css'
 import { useState,useEffect } from 'react'
 
 function Right({onSave,commit}) {
-  const today = new Date()
-  const month = today.getMonth() + 1
-  const day = today.getDate()
-  const dateData = today.getFullYear()+"-"+(month < 10 ? '0' + month : month) + '-' + (day < 10 ? '0' + day : day)
+
   
-  const [title, setTitle] = useState(dateData)
+  const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')
   const [id, setId] = useState(commit?.id || null);
 
