@@ -9,15 +9,20 @@ import Toggle from './Toggle.jsx'
 
 function App() {
 
-const [toggleActive, setToggleActive] = useState(false);  // 상태 공유
+const [toggleActive, setToggleActive] = useState(false);  
 const [TriggerToggle, setTriggerToggle] = useState(false);
-
+const [savedData, setSavedData] = useState(null);
+const [data2,setData2] = useState(null);
   const handlePlus = (e) => {
   e.preventDefault();
   setTriggerToggle(true);
     // Toggle 내부 함수 실행
 }
 
+const handleSave = (data) => {
+    alert(`\n ${data.title}\n${data.description} \n${data.id}`);
+    setData2(data);
+  };
 
   const toggleVisibility = () => {
     setToggleActive(prev => !prev);
@@ -26,7 +31,10 @@ const [TriggerToggle, setTriggerToggle] = useState(false);
     setTriggerToggle(false);
   };
 
-
+  const handleItem = (items) => {
+    alert(`${items.title}\n${items.description} \n${items.id}`);
+    setSavedData(items)
+  };
 
   return (
 
@@ -42,11 +50,16 @@ const [TriggerToggle, setTriggerToggle] = useState(false);
     </div>
     
 
-    <Right>
-    </Right>
+    <Right onSave={handleSave} commit={savedData}/>
+
     <Toggle isActive={toggleActive}
+    data={savedData}
     sendtoggle={TriggerToggle} 
-    fintoggle={handlefintoggle} />
+    fintoggle={handlefintoggle}
+    onItemClick={handleItem}
+    
+    finaldata={data2}
+    />
     </div>
   )
 }

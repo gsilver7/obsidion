@@ -1,7 +1,7 @@
 import './Toggle.css'
 import React, { useState,useEffect } from 'react';
 
-function Toggle({isActive,sendtoggle, fintoggle}) {
+function Toggle({isActive,data,sendtoggle, fintoggle, onItemClick,finaldata}) {
   const [items, setItems] = useState([]);
   useEffect(() => {
     if (sendtoggle) {
@@ -14,23 +14,45 @@ function Toggle({isActive,sendtoggle, fintoggle}) {
     }
   }, [sendtoggle]);
 
+  useEffect(() => {
+if (finaldata) {
+    setItems(prevItems =>
+      prevItems.map(item =>
+        item.id === finaldata.id
+          ? {
+              ...item,
+              title: finaldata.title,
+              description: finaldata.description,
+            }
+          : item
+      )
+    );
+  }
+  }, [finaldata]);
+
   const addItems = () => {
     const newItem = {
+      id: `${items.length+1}`,
       title: `Item ${items.length + 1}`,
       description: `This is the description of item ${items.length + 1}`,  // 설명 추가
     };
     setItems([...items, newItem]);
   };
-
+  const handdle = (items) => {
+    if (onItemClick) {
+      onItemClick(items); // 부모로 item 전달
+    }
+  };
 
   return (
     <div>
       {isActive && (
           <div className="tol">
-        {items.map((item, index) => (
-          <div key={index} className="item">
-            <button className="item-label">{item.title}</button>
-            <p className="item-description">{item.description}</p>
+        {items.map((item) => (
+          <div key={item.id}>
+            <button className="item"
+            onClick={()=>handdle(item)}
+            >{item.title}</button>
           </div>
         ))}
       </div>

@@ -1,19 +1,44 @@
 import './Right.css'
-import { useState } from 'react'
+import { useState,useEffect } from 'react'
 
-function Right() {
-  var today = new Date()
-  var month = today.getMonth() + 1
-  var day = today.getDate()
+function Right({onSave,commit}) {
+  const today = new Date()
+  const month = today.getMonth() + 1
+  const day = today.getDate()
   const dateData = today.getFullYear()+"-"+(month < 10 ? '0' + month : month) + '-' + (day < 10 ? '0' + day : day)
+  
   const [title, setTitle] = useState(dateData)
+  const [description, setDescription] = useState('')
+  const [id, setId] = useState(commit?.id || null);
+
+  const handleSave = () => {
+    if (onSave) {
+      const data = { title, description,id };
+      onSave(data);  // 부모에 데이터 전달
+    }
+  }
+
+   useEffect(() => {
+    if (commit) {
+      setTitle(commit.title);
+      setDescription(commit.description);
+      setId(commit.id);
+    }
+  }, [commit]);
 
   return (
     <div className='right'>
-    <input type="text" className='title' value={title} 
+      <button className='creatB' onClick={handleSave}>save</button>
+    <input type="text" className='title' 
+    value={title} 
     onChange={(e)=>setTitle(e.target.value)}
       ></input>
-    <textarea className='contents'></textarea>
+
+
+    <textarea className='contents' 
+    value={description}
+    onChange={(e)=>setDescription(e.target.value)}></textarea>
+    
     </div>
   )
 }

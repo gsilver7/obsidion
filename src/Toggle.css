@@ -11,3 +11,8 @@
   overflow-x: hidden;  /* 가로 스크롤을 숨김 */
   overflow-y: auto;
 }
+
+.item{
+  height: 2vw;
+
+}
