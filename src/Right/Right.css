@@ -1,4 +1,7 @@
 .title{
+  position: absolute;
+  top:3vh;
+  left: 0;
   font-family: unset;
   padding-top: 10px;
   padding-left: 20px;
@@ -13,18 +16,16 @@
   border-width:0.1vw;
   border-bottom-style: solid;
 border-color: rgba(255, 255, 255, 0.19); 
+z-index: 100;
 }
 
-.creatB{
-  width: 100px;
-  z-index: 10;
-  position: absolute;
-  right: 0;
-}
 
 .contents{
-  width:95vw;
-  height:90vh;
+  left: 0;
+  position: absolute;
+  top:12vh;
+  width:97vw;
+  height:85vh;
     padding-top: 10px;
   padding-left: 20px;
   padding-bottom: 10px;
@@ -39,15 +40,4 @@ overflow-x: hidden;  /* 가로 스크롤을 숨김 */
 
 }
 
-.right{
-  z-index: 1;
-  margin-left: 4vw;
-  background-color:rgba(0, 0, 0, 0.499);
-width: 95.95vw; /* 화면의 1/3을 차지 */
-height: 100vh;
-display: inline-block;
-border-width:0.05vw;
-border-left-style: solid;
-border-color: rgba(255, 255, 255, 0.19);
-position: fixed;
-}
+

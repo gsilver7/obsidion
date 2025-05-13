@@ -14,6 +14,18 @@ function Right({onSave,commit}) {
       onSave(data);  // 부모에 데이터 전달
     }
   }
+  useEffect(() => {
+      if (title) {
+      handleSave()
+    }
+  }, [title]);
+
+  useEffect(() => {
+      if (description) {
+      handleSave()
+    }
+  }, [description]);
+  
 
    useEffect(() => {
     if (commit) {
@@ -25,7 +37,10 @@ function Right({onSave,commit}) {
 
   return (
     <div className='right'>
-      <button className='creatB' onClick={handleSave}>save</button>
+      <div className='tap'>{commit.title}</div>
+        <button className='tap-close'>X</button>
+
+      
     <input type="text" className='title' 
     value={title} 
     onChange={(e)=>setTitle(e.target.value)}

@@ -13,6 +13,8 @@ const [toggleActive, setToggleActive] = useState(false);
 const [TriggerToggle, setTriggerToggle] = useState(false);
 const [savedData, setSavedData] = useState(null);
 const [data2,setData2] = useState(null);
+const [rightComponents, setRightComponents] = useState([]); // Right 컴포넌트 목록
+
   const handlePlus = (e) => {
   e.preventDefault();
   setTriggerToggle(true);
@@ -20,7 +22,6 @@ const [data2,setData2] = useState(null);
 }
 
 const handleSave = (data) => {
-    alert(`\n ${data.title}\n${data.description} \n${data.id}`);
     setData2(data);
   };
 
@@ -33,8 +34,24 @@ const handleSave = (data) => {
 
   const handleItem = (items) => {
     alert(`${items.title}\n${items.description} \n${items.id}`);
+    const newRight = {
+      id: items.id,
+      description: items.description,
+      title: items.title
+    };
+    setRightComponents(prev => {
+    const exists = prev.some(comp => comp.id === items.id);
+    if (exists) return prev;  // 중복이면 추가 안 함
+    return [...prev, newRight];  // 중복 아니면 추가
+  });
     setSavedData(items)
   };
+
+
+ const handleCloseRight = () => {
+    setRightComponents(prev => prev.slice(0, -1)); // 마지막 요소 제거
+  };
+
 
   return (
 
@@ -48,10 +65,12 @@ const handleSave = (data) => {
 
     </div>
     </div>
-    
-
-    <Right onSave={handleSave} commit={savedData}/>
-
+    <button className='close'  onClick={handleCloseRight}>close</button>
+    <div className='right-map'>
+        {rightComponents.map((savedData) => (
+        <Right onSave={handleSave} commit={savedData} />
+      ))}
+    </div>
     <Toggle isActive={toggleActive}
     data={savedData}
     sendtoggle={TriggerToggle} 

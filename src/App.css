@@ -1,3 +1,43 @@
+.close{
+  position: absolute;
+  top:20vw;
+  right :0;
+  width: 4vw;
+  z-index: 100;
+}
+
+.right-map{
+  z-index: 1;
+  margin-left: 4vw;
+  background-color:rgba(0, 0, 0, 0.499);
+width: 95.95vw; /* 화면의 1/3을 차지 */
+height: 100vh;
+display: flex;
+  flex-direction: row;
+  gap:10px;
+border-width:0.05vw;
+border-left-style: solid;
+border-color: rgba(255, 255, 255, 0.19);
+position:absolute;
+}
+
+.tap{
+  background-color: rgb(205, 205, 205);
+  width: 10vw;
+  height: 3vh;
+}
+.tap-close{
+  margin-left: 8.5vw;
+  top:8px;
+  position: absolute;
+  width: 1vw;
+  font-size: 10px;
+  padding: 0;
+  height: 1vw;
+  z-index: 10;
+  background-color:rgb(0, 0, 0);
+}
+
 .total{
     margin: 0;
   padding: 0;
@@ -7,6 +47,8 @@
   height: 100vh;
   background-color: #363636; /* 배경 색상 (예시) */
 }
+
+
 
 .left {
     margin: 0;
