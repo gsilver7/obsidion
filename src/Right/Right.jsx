@@ -1,7 +1,7 @@
 import './Right.css'
 import { useState,useEffect } from 'react'
 
-function Right({onSave,commit}) {
+function Right({onSave,commit,sendClose}) {
 
   
   const [title, setTitle] = useState('')
@@ -26,7 +26,12 @@ function Right({onSave,commit}) {
     }
   }, [description]);
   
-
+   const closeControl = (e) => {
+    e.preventDefault();
+   if (sendClose) {
+      sendClose(id);
+   }
+  };
    useEffect(() => {
     if (commit) {
       setTitle(commit.title);
@@ -38,7 +43,7 @@ function Right({onSave,commit}) {
   return (
     <div className='right'>
       <div className='tap'>{commit.title}</div>
-        <button className='tap-close'>X</button>
+        <button className='tap-close' onClick={closeControl}>×</button>
 
       
     <input type="text" className='title' 

@@ -9,7 +9,6 @@ function Toggle({isActive,data,sendtoggle, fintoggle, onItemClick,finaldata}) {
   const day = today.getDate()
   const dateData = today.getFullYear()+"-"+(month < 10 ? '0' + month : month) + '-' + (day < 10 ? '0' + day : day)
   useEffect(() => {
-  console.log("처음 렌더링 시 한 번 실행됨");
   setItems; // 이 함수가 한 번만 실행됨
 }, []);
   useEffect(() => {

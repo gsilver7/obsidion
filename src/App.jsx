@@ -33,7 +33,6 @@ const handleSave = (data) => {
   };
 
   const handleItem = (items) => {
-    alert(`${items.title}\n${items.description} \n${items.id}`);
     const newRight = {
       id: items.id,
       description: items.description,
@@ -48,9 +47,9 @@ const handleSave = (data) => {
   };
 
 
- const handleCloseRight = () => {
-    setRightComponents(prev => prev.slice(0, -1)); // 마지막 요소 제거
-  };
+ const handleCloseRight = (idToRemove) => {
+    setRightComponents(prev => prev.filter(comp => comp.id !== idToRemove));
+ }
 
 
   return (
@@ -65,10 +64,10 @@ const handleSave = (data) => {
 
     </div>
     </div>
-    <button className='close'  onClick={handleCloseRight}>close</button>
+   
     <div className='right-map'>
         {rightComponents.map((savedData) => (
-        <Right onSave={handleSave} commit={savedData} />
+        <Right key={savedData.id} onSave={handleSave} commit={savedData} sendClose={handleCloseRight}/>
       ))}
     </div>
     <Toggle isActive={toggleActive}
